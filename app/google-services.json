@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "178576484037",
+    "project_id": "houseservice-b6345",
+    "storage_bucket": "houseservice-b6345.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178576484037:android:0258d7e8c4e977412632ac",
+        "android_client_info": {
+          "package_name": "com.example.houseservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178576484037-v5g8m9l7ho5edlevtssnar0qs7o3ucan.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.houseservice",
+            "certificate_hash": "ce89038a2fefe9ac74a9ef7a3de426199c26f91e"
+          }
+        },
+        {
+          "client_id": "178576484037-56l3kmo2dbamkkhk9plobbmu1skqfn4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1u74VkD9oL2XFKZ0nyKBOdFVNcI4rrqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "178576484037-56l3kmo2dbamkkhk9plobbmu1skqfn4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

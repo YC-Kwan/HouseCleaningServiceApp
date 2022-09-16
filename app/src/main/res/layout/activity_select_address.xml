@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:layout_marginTop="16dp"
-        android:text="Select your address"
+        android:text="Select your address: "
         android:layout_gravity="center"
         android:textSize="20dp"
         android:textStyle="bold" />

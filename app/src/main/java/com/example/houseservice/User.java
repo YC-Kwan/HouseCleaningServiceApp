@@ -95,9 +95,7 @@ public class User extends AppCompatActivity {
 
                         //take the data to the next page
                         Intent intent = new Intent(User.this, SelectAddress.class);
-                        intent.putExtra("Day", dayOfMonth);
                         intent.putExtra("Month", month);
-                        intent.putExtra("Year", year);
                         intent.putExtra("Date", date);
                         startActivity(intent);
                     }

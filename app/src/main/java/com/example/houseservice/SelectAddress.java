@@ -42,9 +42,7 @@ public class SelectAddress extends AppCompatActivity {
 
         Intent intent = getIntent();
         String date = intent.getStringExtra("Date");
-        int day = intent.getIntExtra("Day", 0);
         int month = intent.getIntExtra("Month", 0);
-        int year = intent.getIntExtra("Year", 0);
 
         String months = String.valueOf(month);
 

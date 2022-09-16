@@ -48,7 +48,7 @@ public class AdminFeedback extends AppCompatActivity {
     }
 
     private void getFeedback(){
-        fStore.collection("Feedback").orderBy("Created time", Query.Direction.ASCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        fStore.collection("Feedback").orderBy("Created time", Query.Direction.DESCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 mFeedbacks.clear();

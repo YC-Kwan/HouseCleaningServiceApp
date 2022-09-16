@@ -71,9 +71,9 @@ public class SelectTimeSlot extends AppCompatActivity {
 
         book_month = Integer.parseInt(month);
 
-        tvAddress.setText(address);
-        tvDate.setText(date);
-        tvService.setText(cleaningService);
+        tvAddress.setText("Address: " + address);
+        tvDate.setText("Date: "+ date);
+        tvService.setText("Cleaning Service: "+ cleaningService);
 
         btn_10_11=findViewById(R.id.btn_10_11);
         btn_11_12=findViewById(R.id. btn_11_12);
@@ -497,9 +497,6 @@ public class SelectTimeSlot extends AppCompatActivity {
                 });
 
                 ArrayList<String> getTime = new ArrayList<>();
-
-                //if the time not equals to empty means ady booked by the user
-                //Update the time to string time so the user ID will assign to the string time
                 //the string time will store in  getTime arrayList
                 if (count10AM == 1){
                     getTime.add("10AM - 11AM");
@@ -531,15 +528,6 @@ public class SelectTimeSlot extends AppCompatActivity {
                 if (count5PM == 1){
                     getTime.add("5 PM - 6 PM");
                 }
-
-                time_10 = "";
-                time_11 = "";
-                time_12 = "";
-                time_1  = "";
-                time_2  = "";
-                time_3  = "";
-                time_4  = "";
-                time_5  = "";
 
                 //Store the time booking information into user history
                 DocumentReference storeHistory = db.collection("Users").document(userID)
@@ -584,7 +572,6 @@ public class SelectTimeSlot extends AppCompatActivity {
 
                 //reset the arraylist
                 getTime.clear();
-
 
                 hour  = 0;
 

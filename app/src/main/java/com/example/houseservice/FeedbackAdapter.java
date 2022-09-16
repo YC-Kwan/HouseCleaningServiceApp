@@ -40,13 +40,10 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         final String feedbacks ="Feedback: " + userFeedback.getFeedbacks();
         final String feedback_date ="Posted on: " + userFeedback.getDate();
 
-        if (holder.imgViewFeedback.getDrawable() == null){
-            holder.imgViewFeedback.setVisibility(View.GONE);
-        }else{
-            holder.TvFeedback.setText(feedbacks);
-            holder.TvDate.setText(feedback_date);
-            Picasso.get().load(userFeedback.getImage()).into(holder.imgViewFeedback);
-        }
+        holder.TvFeedback.setText(feedbacks);
+        holder.TvDate.setText(feedback_date);
+        Picasso.get().load(userFeedback.getImage()).into(holder.imgViewFeedback);
+
 
     }
 

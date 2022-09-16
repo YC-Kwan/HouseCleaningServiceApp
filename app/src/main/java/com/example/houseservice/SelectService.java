@@ -44,7 +44,7 @@ public class SelectService extends AppCompatActivity {
         date = getIntent().getStringExtra("Date");
         month = getIntent().getStringExtra("Month");
 
-        tvAddress.setText(address);
+        tvAddress.setText("Address: "+ address);
         tvDate.setText(date);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

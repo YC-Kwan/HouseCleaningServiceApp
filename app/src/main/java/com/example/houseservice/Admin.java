@@ -72,7 +72,7 @@ public class Admin extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),Profile.class));
                 return true;
             case R.id.item2:
-                startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                startActivity(new Intent(getApplicationContext(), SelectYear.class));
                 return true;
             case R.id.item3:
                 FirebaseAuth.getInstance().signOut();

@@ -35,7 +35,7 @@ import java.util.List;
 
 public class User extends AppCompatActivity {
 
-    private ImageView img_chat;
+    private ImageView img_cart;
     private FirebaseFirestore fStore;
     private CardView card_service,card_history,card_chat,card_feedback;
     private TextView welcome;
@@ -54,6 +54,7 @@ public class User extends AppCompatActivity {
         card_service=findViewById(R.id.service_available);
         card_history=findViewById(R.id.card_history);
         card_feedback=findViewById(R.id.card_feedback);
+        img_cart=findViewById(R.id.cart);
 
 
         welcome=findViewById(R.id.welcome);
@@ -82,6 +83,14 @@ public class User extends AppCompatActivity {
             }
         });
 
+        img_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getApplicationContext(),UserCart.class));
+            }
+        });
+
         card_service.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +106,7 @@ public class User extends AppCompatActivity {
                         Intent intent = new Intent(User.this, SelectAddress.class);
                         intent.putExtra("Month", month);
                         intent.putExtra("Date", date);
+                        intent.putExtra("Year", year);
                         startActivity(intent);
                     }
                 },year,month,day

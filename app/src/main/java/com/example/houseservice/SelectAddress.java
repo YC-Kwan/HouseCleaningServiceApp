@@ -43,8 +43,10 @@ public class SelectAddress extends AppCompatActivity {
         Intent intent = getIntent();
         String date = intent.getStringExtra("Date");
         int month = intent.getIntExtra("Month", 0);
+        int year = intent.getIntExtra("Year", 0);
 
         String months = String.valueOf(month);
+        String years = String.valueOf(year);
 
         tvDate.setText(date);
 
@@ -55,7 +57,7 @@ public class SelectAddress extends AppCompatActivity {
         mAddress = new ArrayList<>();
 
         //After finish get all the data, the mRoom object will put into the adapter which to set into the recyclerView
-        mSelectAddressAdapter = new SelectAddressAdapter(this, mAddress, date,months);
+        mSelectAddressAdapter = new SelectAddressAdapter(this, mAddress, date,months,years);
         recyclerView.setAdapter(mSelectAddressAdapter);
 
         getAddress();

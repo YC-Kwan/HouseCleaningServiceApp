@@ -32,7 +32,7 @@ import java.util.ArrayList;
  */
 public class TotalOrder extends Fragment {
     private String monthCounter1,monthCounter2,monthCounter3,monthCounter4,monthCounter5,monthCounter6,monthCounter7,monthCounter8,monthCounter9,
-            monthCounter10,monthCounter11,monthCounter12;
+            monthCounter10,monthCounter11,monthCounter12, year;
     FirebaseFirestore db;
 
 
@@ -46,23 +46,25 @@ public class TotalOrder extends Fragment {
         BarChart barChart = v.findViewById(R.id.OrderBarChart);
         TextView totalOrder = v.findViewById(R.id.totalOrder);
 
-        DocumentReference monthCounter = db.collection("Order").document("8aZa5asmGgQX4UN7yDJ9");
+        year = getActivity().getIntent().getExtras().getString("Year");
+
+        DocumentReference monthCounter = db.collection("Order").document(year).collection("Analytic").document("Total Order");
         monthCounter.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                monthCounter1= documentSnapshot.getString("month1");
-                monthCounter2= documentSnapshot.getString("month2");
-                monthCounter3= documentSnapshot.getString("month3");
-                monthCounter4= documentSnapshot.getString("month4");
-                monthCounter5= documentSnapshot.getString("month5");
-                monthCounter6= documentSnapshot.getString("month6");
-                monthCounter7= documentSnapshot.getString("month7");
-                monthCounter8= documentSnapshot.getString("month8");
-                monthCounter9= documentSnapshot.getString("month9");
-                monthCounter10= documentSnapshot.getString("month10");
-                monthCounter11= documentSnapshot.getString("month11");
-                monthCounter12= documentSnapshot.getString("month12");
+                monthCounter1= documentSnapshot.getString("m1");
+                monthCounter2= documentSnapshot.getString("m2");
+                monthCounter3= documentSnapshot.getString("m3");
+                monthCounter4= documentSnapshot.getString("m4");
+                monthCounter5= documentSnapshot.getString("m5");
+                monthCounter6= documentSnapshot.getString("m6");
+                monthCounter7= documentSnapshot.getString("m7");
+                monthCounter8= documentSnapshot.getString("m8");
+                monthCounter9= documentSnapshot.getString("m9");
+                monthCounter10= documentSnapshot.getString("m10");
+                monthCounter11= documentSnapshot.getString("m11");
+                monthCounter12= documentSnapshot.getString("m12");
                 totalOrder.setText("Total Order: "+documentSnapshot.getString("totalorder"));
 
                 ArrayList<BarEntry> order = new ArrayList<>();

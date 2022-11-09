@@ -32,7 +32,7 @@ import java.util.ArrayList;
  */
 public class TotalEarn extends Fragment {
     private String monthEarns1,monthEarns2,monthEarns3,monthEarns4,monthEarns5,monthEarns6,monthEarns7,monthEarns8,monthEarns9,
-            monthEarns10,monthEarns11,monthEarns12;
+            monthEarns10,monthEarns11,monthEarns12, year;
     FirebaseFirestore db;
 
     @Override
@@ -45,7 +45,9 @@ public class TotalEarn extends Fragment {
         BarChart barChart = v.findViewById(R.id.EarnBarChart);
         TextView totalOrder = v.findViewById(R.id.totalEarn);
 
-        DocumentReference monthCounter = db.collection("Order").document("uv5uyCIl0ZGfytvqnNv2");
+        year = getActivity().getIntent().getExtras().getString("Year");
+
+        DocumentReference monthCounter = db.collection("Order").document(year).collection("Analytic").document("Total Earn");
         monthCounter.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {

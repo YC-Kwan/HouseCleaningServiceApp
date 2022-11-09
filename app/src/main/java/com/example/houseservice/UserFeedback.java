@@ -69,8 +69,6 @@ public class UserFeedback extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.feedback_recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
-        linearLayoutManager.setReverseLayout(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 

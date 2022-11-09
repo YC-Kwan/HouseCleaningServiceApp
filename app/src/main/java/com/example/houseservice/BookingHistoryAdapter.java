@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +38,10 @@ public class BookingHistoryAdapter extends  RecyclerView.Adapter<BookingHistoryA
         holder.tvPrice.setText("RM " + mUserBookings.get(position).getPrice());
         holder.tvTime.setText(mUserBookings.get(position).getTime() + "");
 
+        holder.btnPay.setVisibility(View.INVISIBLE);
+        holder.imgDel.setVisibility(View.INVISIBLE);
+
+
     }
 
     @Override
@@ -45,6 +51,8 @@ public class BookingHistoryAdapter extends  RecyclerView.Adapter<BookingHistoryA
 
     public class historyViewHolder extends RecyclerView.ViewHolder {
         private TextView tvService, tvPrice, tvTime, tvDate,tvAddress,tvPhoneNo,tvHour;
+        private Button btnPay;
+        private ImageView imgDel;
 
         public historyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -55,6 +63,8 @@ public class BookingHistoryAdapter extends  RecyclerView.Adapter<BookingHistoryA
             tvService = itemView.findViewById(R.id.history_service);
             tvPrice = itemView.findViewById(R.id.history_price);
             tvTime = itemView.findViewById(R.id.history_time);
+            btnPay = itemView.findViewById(R.id.payBtn);
+            imgDel = itemView.findViewById(R.id.delCart);
 
         }
 

@@ -35,8 +35,6 @@ public class AdminFeedback extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.adminFeedback_recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
-        linearLayoutManager.setReverseLayout(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 

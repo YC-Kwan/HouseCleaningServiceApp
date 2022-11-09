@@ -106,47 +106,17 @@ public class PendingBookingAdapter extends  RecyclerView.Adapter<PendingBookingA
         btnComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDate = mtvDate.getText().toString();
-                mUsername = mtvUsername.getText().toString();
-                mAddress = mtvAddress.getText().toString();
-                mPhoneNo = mtvphoneNo.getText().toString();
-                mService = mtvService.getText().toString();
-                price = mtvPrice.getText().toString();
-                mtime = mtvTime.getText().toString();
-
-                db.collection("User Booking").document(post_key).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                DocumentReference updateProgress = db.collection("User Booking").document(post_key);
+                updateProgress.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Intent intent = new Intent(mContext,AdminViewBooking.class);
-                            mContext.startActivity(intent);
-                        }
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        updateProgress.update("Progress", "completed");
+                        Toast.makeText(mContext, "Update Successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(mContext, AdminViewBooking.class);
+                        mContext.startActivity(intent);
                     }
                 });
-
-                Map<String, Object> AddCompletedBooking = new HashMap<>();
-                AddCompletedBooking.put("Cleaning Service", mService);
-                AddCompletedBooking.put("Username", mUsername);
-                AddCompletedBooking.put("Date", mDate);
-                AddCompletedBooking.put("Address", mAddress);
-                AddCompletedBooking.put("PhoneNo", mPhoneNo);
-                AddCompletedBooking.put("Price", price + "");
-
-                db.collection("Complete booking")
-                        .add(AddCompletedBooking)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(view.getContext(),"Updated successfully!", Toast.LENGTH_LONG).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-
-                            }
-
-                        });
                 dialog.dismiss();
             }
         });

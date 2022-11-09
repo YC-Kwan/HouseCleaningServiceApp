@@ -18,7 +18,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HouseService">
-        <activity android:name=".UserFeedbacks"></activity>
+        <activity
+            android:name=".UserCart"
+            android:parentActivityName=".User"/>
+
+        <activity android:name=".UserPayment" />
+        <activity android:name=".SelectYear" />
+        <activity android:name=".UserFeedbacks" />
         <activity android:name=".Profile" />
         <activity
             android:name=".AdminFeedback"
@@ -28,7 +34,7 @@
             android:parentActivityName=".User" />
         <activity
             android:name=".Dashboard"
-            android:parentActivityName=".Admin" />
+            android:parentActivityName=".SelectYear" />
         <activity
             android:name=".AdminViewBooking"
             android:parentActivityName=".Admin" />

@@ -63,7 +63,7 @@ public class PendingBooking extends Fragment {
     }
 
     private void getHistory(){
-        db.collection("User Booking").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("User Booking").whereEqualTo("Status", "paid").whereEqualTo("Progress", "pending").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 mUserBookings.clear();

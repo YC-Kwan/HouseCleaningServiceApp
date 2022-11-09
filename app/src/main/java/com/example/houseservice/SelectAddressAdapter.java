@@ -20,13 +20,14 @@ public class SelectAddressAdapter extends RecyclerView.Adapter<SelectAddressAdap
 
     private Context mContext;
     private List<Address> mAddress;
-    private String date,month;
+    private String date,month,year;
 
-    public SelectAddressAdapter(Context c, List<Address> address, String d, String m) {
+    public SelectAddressAdapter(Context c, List<Address> address, String d, String m, String y) {
         mContext = c;
         mAddress = address;
         date = d;
         month = m;
+        year = y;
     }
 
     @NonNull
@@ -48,6 +49,7 @@ public class SelectAddressAdapter extends RecyclerView.Adapter<SelectAddressAdap
                 intent.putExtra("Address", mAddress.get(position).getAddress());
                 intent.putExtra("Date", date);
                 intent.putExtra("Month", month);
+                intent.putExtra("Year", year);
                 mContext.startActivity(intent);
             }
         });

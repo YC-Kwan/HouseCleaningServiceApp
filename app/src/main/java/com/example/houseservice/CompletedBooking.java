@@ -29,7 +29,7 @@ import java.util.List;
 public class CompletedBooking extends Fragment {
     private List<UserBooking> mUserBookings;
     private RecyclerView recyclerView;
-    private CompletedBookingAdapter mCompletedBookingAdapter;
+    private PendingBookingAdapter mPendingBookingAdapter;
     FirebaseFirestore db;
 
     @Override
@@ -51,8 +51,8 @@ public class CompletedBooking extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         mUserBookings = new ArrayList<>();
-        mCompletedBookingAdapter  = new CompletedBookingAdapter(mUserBookings, getContext());
-        recyclerView.setAdapter(mCompletedBookingAdapter);
+        mPendingBookingAdapter  = new PendingBookingAdapter(mUserBookings, getContext());
+        recyclerView.setAdapter(mPendingBookingAdapter);
 
         getHistory();
 
@@ -60,7 +60,7 @@ public class CompletedBooking extends Fragment {
     }
 
     private void getHistory(){
-        db.collection("Complete booking").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("User Booking").whereEqualTo("Status", "paid").whereEqualTo("Progress", "completed").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 mUserBookings.clear();
@@ -78,15 +78,21 @@ public class CompletedBooking extends Fragment {
                         String book_hour = documentSnapshot.getString("Hour");
                         String phoneNo = documentSnapshot.getString("PhoneNo");
                         String book_price = documentSnapshot.getString("Price");
+                        String book_time = "";
 
                         int price = Integer.parseInt(book_price);
+                        int hour_count = Integer.parseInt(book_hour);
 
-                        UserBooking userBooking = new UserBooking(id,username,cleaning_service,address,null,book_date, phoneNo, price,0);
+                        for (int x=1; x<=hour_count; x++){
+                            book_time += documentSnapshot.getString("Time " + x) + "\n";
+                        }
+
+                        UserBooking userBooking = new UserBooking(id,username,cleaning_service,address,book_time,book_date, phoneNo, price,hour_count);
 
                         mUserBookings.add(userBooking);
                     }
                 }
-                mCompletedBookingAdapter.notifyDataSetChanged();
+                mPendingBookingAdapter.notifyDataSetChanged();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

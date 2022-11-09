@@ -1,33 +1,27 @@
 package com.example.houseservice;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookingHistory extends AppCompatActivity {
+public class UserCart extends AppCompatActivity {
 
     private List<UserBooking> mUserBookings;
     private RecyclerView recyclerView;
-    private BookingHistoryAdapter mBookingHistoryAdapter;
+    private CartAdapter mCartAdapter;
     private String userId;
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
@@ -35,9 +29,9 @@ public class BookingHistory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_history);
+        setContentView(R.layout.activity_user_cart);
 
-        recyclerView = findViewById(R.id.history_recyclerView);
+        recyclerView = findViewById(R.id.cart_recyclerView);
 
         db = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -51,14 +45,14 @@ public class BookingHistory extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         mUserBookings = new ArrayList<>();
-        mBookingHistoryAdapter  = new BookingHistoryAdapter(mUserBookings, BookingHistory.this);
-        recyclerView.setAdapter(mBookingHistoryAdapter);
+        mCartAdapter  = new CartAdapter(mUserBookings, UserCart.this);
+        recyclerView.setAdapter(mCartAdapter);
 
-        getHistory();
+        getCart();
     }
 
-    private void getHistory(){
-        db.collection("User Booking").whereEqualTo("Status", "paid").whereEqualTo("UserID", userId).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+    private void getCart(){
+        db.collection("User Booking").whereEqualTo("Status", "unpaid").whereEqualTo("UserID", userId).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 mUserBookings.clear();
@@ -89,7 +83,7 @@ public class BookingHistory extends AppCompatActivity {
                         mUserBookings.add(userBooking);
                     }
                 }
-                mBookingHistoryAdapter.notifyDataSetChanged();
+                mCartAdapter.notifyDataSetChanged();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
